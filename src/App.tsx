@@ -3,7 +3,7 @@ import "./styles/App.css";
 import api from "./services/api";
 
 interface userData {
-  idUsuario: number | string;
+  idUsuario: number;
   descricao: string;
   login: string;
   senha: string;
