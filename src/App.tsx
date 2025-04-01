@@ -41,9 +41,9 @@ function App() {
 
   return (
     <div className="h-screen bg-blue-800 content-center">
-      <div className="flex flex-row justify-center gap-20">
+      <div className="flex flex-col justify-center gap-10 lg:gap-20 lg:flex-row">
         <div className="flex flex-col items-center gap-12">
-          <div className="">
+          <div className="flex">
             <img src="./Group.png" alt="" />
           </div>
           <div className="flex flex-col gap-6 font-semibold">
