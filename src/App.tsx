@@ -93,6 +93,16 @@ function App() {
             </div>
             <div className="flex flex-row items-center border-1 border-white rounded-md">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center">
+                {userLogin?.senha}
+              </div>
+            </div>
+            <div className="flex flex-row items-center border-1 border-white rounded-md">
+              <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center">
+                {userLogin?.ativo}
+              </div>
+            </div>
+            <div className="flex flex-row items-center border-1 border-white rounded-md">
+              <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center">
                 {userLogin?.dataExpiracao}
               </div>
             </div>
