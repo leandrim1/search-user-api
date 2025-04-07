@@ -141,6 +141,18 @@ function App() {
     editarUser();
   }
 
+  const handleClickCreateUser  = () => {
+    setCadUser(cadUser);
+  };
+
+  const handleClickEditUser  = () => {
+    setEditUser(editUser);
+  };
+
+  const handleClickDelUser  = () => {
+    setEditUser(editUser);
+  };
+
   return (
     <section className="h-full lg:h-screen bg-blue-800 lg:content-center">
       <div className="flex flex-col justify-center pt-10 gap-10 lg:gap-20 lg:ml-70 lg:mt-0 lg:flex-row">
@@ -179,7 +191,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={setCadUser}
+                onClick={handleClickCreateUser}
               >
                 CRIAR USUARIO
               </button>
@@ -187,7 +199,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={setEditUser}
+                onClick={handleClickEditUser}
               >
                 EDITAR USUARIO
               </button>
@@ -195,7 +207,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={setDelUser}
+                onClick={handleClickDelUser}
               >
                 DELETAR USUARIO
               </button>
