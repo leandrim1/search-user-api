@@ -19,7 +19,7 @@ function App() {
   const [id, setID] = useState("");
   const [error, setError] = useState("");
   const [responseCreate, setResponseCreate] = useState("");
-  const [cadUser, setCadUser] = useState<userData | null>(null);
+  const [cadUser, setCadUser] = useState<userData | boolean>(false);
   const [idUsuario, setIdUsuario] = useState("");
   const [descricao, setDescricao] = useState("");
   const [login, setLogin] = useState("");
@@ -28,9 +28,9 @@ function App() {
   const [dataCadastro, setDataCadastro] = useState("");
   const [dataAlteracao, setDataAlteracao] = useState("");
   const [caminhoImagem, setCaminhoImagem] = useState("");
-  const [delUser, setDelUser] = useState<userData | null>(null);
+  const [delUser, setDelUser] = useState<userData | boolean>(false);
   const [responseDelete, setResponseDelete] = useState("");
-  const [editUser, setEditUser] = useState<userData | null>(null);
+  const [editUser, setEditUser] = useState<userData | boolean>(false);
   const [responseEdit, setResponseEdit] = useState("");
 
   async function loadUser() {
@@ -53,9 +53,9 @@ function App() {
     setID("");
     setUserLogin(null);
     setError("");
-    setCadUser(null);
+    setCadUser(false);
     setResponseCreate("");
-    setDelUser(null);
+    setDelUser(false);
     setResponseDelete("");
     setIdUsuario("");
     setDescricao("");
@@ -65,7 +65,7 @@ function App() {
     setDataCadastro("");
     setDataAlteracao("");
     setCaminhoImagem("");
-    setEditUser(null);
+    setEditUser(false);
     setResponseEdit("");
   };
 
@@ -141,18 +141,6 @@ function App() {
     editarUser();
   }
 
-  const handleClickCreateUser  = () => {
-    setCadUser(cadUser);
-  };
-
-  const handleClickEditUser  = () => {
-    setEditUser(editUser);
-  };
-
-  const handleClickDelUser  = () => {
-    setEditUser(editUser);
-  };
-
   return (
     <section className="h-full lg:h-screen bg-blue-800 lg:content-center">
       <div className="flex flex-col justify-center pt-10 gap-10 lg:gap-20 lg:ml-70 lg:mt-0 lg:flex-row">
@@ -191,7 +179,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={handleClickCreateUser}
+                onClick={() => setCadUser(true)}
               >
                 CRIAR USUARIO
               </button>
@@ -199,7 +187,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={handleClickEditUser}
+                onClick={() => setEditUser(true)}
               >
                 EDITAR USUARIO
               </button>
@@ -207,7 +195,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={handleClickDelUser}
+                onClick={() => setDelUser(true)}
               >
                 DELETAR USUARIO
               </button>
@@ -355,7 +343,6 @@ function App() {
                   onChange={(e) => setID(e.target.value)}
                   className="outline-none"
                 />
-                *
               </div>
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
                 <input
@@ -410,7 +397,6 @@ function App() {
                   onChange={(e) => setDataAlteracao(e.target.value)}
                   className="outline-none"
                 />
-                *
               </div>
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
                 <input
