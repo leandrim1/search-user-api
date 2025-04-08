@@ -19,7 +19,7 @@ function App() {
   const [id, setID] = useState("");
   const [error, setError] = useState("");
   const [responseCreate, setResponseCreate] = useState("");
-  const [cadUser, setCadUser] = useState<userData | boolean>(false);
+  const [currentAction, setCurrentAction] = useState<"cadastrar" | "editar" | "deletar" | null>(null);
   const [idUsuario, setIdUsuario] = useState("");
   const [descricao, setDescricao] = useState("");
   const [login, setLogin] = useState("");
@@ -28,9 +28,7 @@ function App() {
   const [dataCadastro, setDataCadastro] = useState("");
   const [dataAlteracao, setDataAlteracao] = useState("");
   const [caminhoImagem, setCaminhoImagem] = useState("");
-  const [delUser, setDelUser] = useState<userData | boolean>(false);
   const [responseDelete, setResponseDelete] = useState("");
-  const [editUser, setEditUser] = useState<userData | boolean>(false);
   const [responseEdit, setResponseEdit] = useState("");
 
   async function loadUser() {
@@ -51,12 +49,10 @@ function App() {
 
   const resetResponse = () => {
     setID("");
-    setUserLogin(null);
     setError("");
-    setCadUser(false);
     setResponseCreate("");
-    setDelUser(false);
     setResponseDelete("");
+    setCurrentAction(null);
     setIdUsuario("");
     setDescricao("");
     setLogin("");
@@ -65,7 +61,6 @@ function App() {
     setDataCadastro("");
     setDataAlteracao("");
     setCaminhoImagem("");
-    setEditUser(false);
     setResponseEdit("");
   };
 
@@ -86,7 +81,7 @@ function App() {
         "/api/v1/Usuario/CadastrarUsuario",
         userToRegister
       );
-      setCadUser(response.data);
+      setCurrentAction(response.data)
       setResponseCreate("Usuario cadastrado");
     } catch (error) {
       setResponseCreate("Usuario nao cadastrado: " + error);
@@ -102,7 +97,7 @@ function App() {
       const response = await axiosConfig.delete(
         `/api/v1/Usuario/RemoverUsuario/${id}`,
       );
-      setDelUser(response.data);
+      setCurrentAction(response.data);
       setResponseDelete("Usuario deletado");
     } catch (error) {
       setResponseDelete("Usuario nao deletado: " + error);
@@ -130,7 +125,7 @@ function App() {
         `/api/v1/Usuario/EditarUsuario/${id}`,
         userToEdit
       );
-      setEditUser(response.data);
+      setCurrentAction(response.data);
       setResponseEdit("Usuario editado com sucesso!");
     } catch (error) {
       setResponseEdit("Usuario nao editado: " + error);
@@ -179,7 +174,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={() => setCadUser(true)}
+                onClick={() => setCurrentAction("cadastrar")}
               >
                 CRIAR USUARIO
               </button>
@@ -187,7 +182,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={() => setEditUser(true)}
+                onClick={() => setCurrentAction("editar")}
               >
                 EDITAR USUARIO
               </button>
@@ -195,7 +190,7 @@ function App() {
             <div className="items-center bg-white rounded-md font-semibold">
               <button
                 className="w-78 h-12 text-blue-800 outline-none"
-                onClick={() => setDelUser(true)}
+                onClick={() => setCurrentAction("deletar")}
               >
                 DELETAR USUARIO
               </button>
@@ -244,7 +239,7 @@ function App() {
           )}
         </div>
         <div className="flex flex-col items-center gap-0 lg:gap-15">
-          {cadUser && (
+          {currentAction === "cadastrar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
                 <input
@@ -333,7 +328,7 @@ function App() {
           )}
         </div>
         <div className="flex flex-col items-center gap-0 lg:gap-15">
-          {editUser && (
+          {currentAction === "editar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
                 <input
@@ -422,7 +417,7 @@ function App() {
           )}
         </div>
         <div className="flex flex-col items-center gap-0 lg:gap-15">
-          {delUser && (
+          {currentAction === "deletar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
                 <input
