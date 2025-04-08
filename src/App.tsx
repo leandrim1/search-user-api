@@ -238,7 +238,7 @@ function App() {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-center gap-0 lg:gap-15">
+        <div className="flex flex-col items-center">
           {currentAction === "cadastrar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
@@ -327,7 +327,7 @@ function App() {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-center gap-0 lg:gap-15">
+        <div className="flex flex-col items-center">
           {currentAction === "editar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
@@ -416,7 +416,7 @@ function App() {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-center gap-0 lg:gap-15">
+        <div className="flex flex-col items-center">
           {currentAction === "deletar" && (
             <div className="flex flex-col lg:flex-col gap-6 font-semibold">
               <div className="w-70 h-12 text-white pl-4 outline-none text-center content-center border-1 rounded-md">
